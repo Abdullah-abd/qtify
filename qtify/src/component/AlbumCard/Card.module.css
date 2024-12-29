@@ -1,0 +1,30 @@
+.chips{
+    background-color: var(--color-dark) !important;
+    color: white !important;
+    width: fit-content;
+    height: 23px !important;
+    font-family: 'poppins' !important;
+    font-size: 10px !important;
+    text-align: left;
+    text-decoration-skip-ink: none;
+    margin-left: -160px;
+    
+}
+.card_container{
+    width: 300;
+    border-radius: 2;
+    overflow: hidden; 
+    box-shadow: 3;
+    margin: 2rem;
+    position:relative;
+}
+.name{
+    position: absolute;
+    top: 5rem;
+    font-family: 'poppins' !important;
+    
+    font-weight: bolder !important;
+    color: white;
+    opacity: 0.6;
+    font-size: 60px !important;
+}

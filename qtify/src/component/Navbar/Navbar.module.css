@@ -3,7 +3,7 @@
     position: relative;
     height: 74px;
     padding: 0px 32px;
-    padding-left: 32px;
+    /* padding-left: 32px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
