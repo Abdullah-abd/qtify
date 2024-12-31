@@ -1,50 +1,56 @@
 import React from "react";
-import { Card, CardMedia, CardContent, Typography, Chip, Box } from "@mui/material";
-import cardImage from "../../assets/cardImage.png"
-import styles from "./Card.module.css"
-export default function AlbumCard() {
-  return (
-    <Card
-      sx={{
-        // width: 300,
-        borderRadius: "18px",
-        overflow: "hidden", // Prevents image overflow
-        boxShadow: 3,
-        margin: 2,
-        position:"relative",
-        border:"2px solid black"
-      }}
-    >
-      {/* Album Image */}
-      <CardMedia
-        component="img"
-        height="100%" // Adjust height to match the Figma ratio
-        image={cardImage} // Dummy image
-        alt="Album"
-      />
+import styles from "./Card.module.css";
+import { Chip, Tooltip } from "@mui/material";
 
-      {/* Bottom Section */}
-      <CardContent
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 1,
-          padding: 2,
-        }}
-      >
-        {/* Album Name */}
-        <Typography variant="h6" component="div" align="center" className={styles.name}>
-          Album Name
-        </Typography>
+function AlbumCard({ data, type }) {
+  switch (type) {
+    case "album": {
+      const { image, follows, title, songs } = data;
+      return (
+        <Tooltip title={`${songs?.length} songs`} placement="top" arrow>
+          <div className={styles.wrapper}>
+            <div className={styles.card}>
+              <img src={image} alt="album" />
+              <div className={styles.banner}>
+                <Chip
+                  label={`${follows} Follows`}
+                  className={styles.chip}
+                  size="small"
+                />
+              </div>
+            </div>
+            <div className={styles.titleWrapper}>
+              <p>{title}</p>
+            </div>
+          </div>
+        </Tooltip>
+      );
+    }
 
-        {/* Chip for Number of Follows */}
-        <Chip
-          label="1.2k Follows"
-          className={styles.chips}
-        />
-      </CardContent>
-    </Card>
-  );
+    case "song": {
+      const { image, likes, title, songs } = data;
+      return (
+        <div className={styles.wrapper}>
+          <div className={styles.card}>
+            <img src={image} alt="album" loading="lazy" />
+            <div className={styles.banner}>
+              <Chip
+                  label={`${likes} likes`}
+                  className={styles.chip}
+                  size="small"
+                />
+            </div>
+          </div>
+          <div className={styles.titleWrapper}>
+            <p>{title}</p>
+          </div>
+        </div>
+      );
+    }
+
+    default:
+      return <></>;
+  }
 }
+
+export default AlbumCard;

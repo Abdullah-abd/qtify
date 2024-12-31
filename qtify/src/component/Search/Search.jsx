@@ -23,7 +23,6 @@ const Search = () => {
     e.preventDefault();
     console.log(value);
     navigate(`/album/${value.slug}`);
-    //Process form data, call API, set state etc.
   };
   return (
     <div style={{ position: "relative" }}>

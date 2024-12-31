@@ -16,7 +16,7 @@
   .searchButton {
     border-radius: 0px 8px 8px 0px;
     padding: 14px 20px;
-    height: 104%;
+    height: 100%;
     border: 1px solid var(--color-dark);
     border-left: none;
     cursor: pointer;

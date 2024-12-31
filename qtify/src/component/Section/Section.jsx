@@ -1,68 +1,53 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import styles from "./Section.module.css";
 import AlbumCard from "../AlbumCard/AlbumCard";
-import { Box, Button, Typography, Grid } from "@mui/material";
+import Carousel from "../Carousel/Carousel"
+const Section = ({ type, title, data, toggle = true }) => {
+  const [carouselToggle, setCarouselToggle] = useState(false); // Initially show first 7 cards
 
-export default function Section() {
-  const [albums, setAlbums] = useState([]);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const apiEndpoint = "https://qtify-backend-labs.crio.do/albums/top";
-  
-  useEffect(() => {
-    const fetchAlbums = async () => {
-      try {
-        const response = await axios.get(apiEndpoint);
-        // console.log(response.data);
-        setAlbums(response.data);
-      } catch (error) {
-        console.error("Error fetching albums:", error);
-      }
-    };
-
-    fetchAlbums();
-  }, []);
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+  const handleToggle = () => {
+    setCarouselToggle(!carouselToggle);
   };
-console.log(albums)
+// console.log(type)
   return (
-    <Box sx={{ padding: 3 }}>
+    <div>
+      <div className={styles.sectionTop}>
+        <h3>{title}</h3>
+        {toggle && (
+          <h4 onClick={handleToggle} className={styles.toggleText}>
+            {carouselToggle ? "Collapse All" : "Show All"}
+          </h4>
+        )}
+      </div>
 
-      {/* Header Section */}
-      {/* <Grid container alignItems="center" justifyContent="space-between" sx={{ marginBottom: 2 }}>
-        <Typography variant="h5" component="div">
-          {albums. title}Top Albums
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={toggleCollapse}
-          sx={{ textTransform: "none" }}
-        >
-          {isCollapsed ? "Expand" : "Collapse"}
-        </Button>
-      </Grid>
-      {/* Grid Section */}
-        {albums.map((album)=>{
-            return(
-                <Typography>
-                    {album.title}
-                </Typography>
-            )
-        })}
-      {/* <Grid container spacing={3} columns={12}>
-        {(isCollapsed ? albums.slice(0, 4) : albums).map((album) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={album.id}>
-            <AlbumCard
-              albumImage={album.image}
-              albumName={album.name}
-              follows={`${album.follows} Follows`}
-            />
-          </Grid>
-        ))}
-      </Grid> */} 
-    </Box>
+      {data.length ? (
+        <div className={styles.sectionInnerWrapper}>
+          {carouselToggle ? (
+            <div className={styles.showAllWrapper}>
+              {data.map((album) => {
+                // console.log(album)
+                return(
+                
+                <AlbumCard data={album} type={type} key={album.id} />
+              )})}
+            </div>
+          ) : (
+            <div className={styles.cardsWraper}>
+           <Carousel data={data} renderCardComponent={(data)=><AlbumCard data={data} type={type}/>}/>
+              {/* {data.slice(0, 7).map((album) => (
+                 <AlbumCard data={album} type={type} key={album.id} />
+              ))} */}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className={styles.progressBar}>
+          <CircularProgress />
+        </div>
+      )}
+    </div>
   );
-}
+};
 
+export default Section;
