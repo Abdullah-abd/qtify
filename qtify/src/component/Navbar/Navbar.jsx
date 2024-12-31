@@ -9,7 +9,9 @@ const Navbar = (searchData)=>{
     return (
         <nav className={Styles.navbar}>
         <Logo/>
-        <Search/>
+        <div className={Styles.desktopSearch}>
+        <Search />
+        </div>
         <Button/>
        </nav>
       );

@@ -4,3 +4,9 @@
   flex-direction: column;
   gap:32px; 
 }
+
+@media screen and (min-width: 992px){
+  .mobileSearch{
+    display: none;
+  }
+}

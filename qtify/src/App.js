@@ -5,7 +5,7 @@ import FilterSection from './component/FilterSection/FilterSection';
 import {fetchTopAlbums, fetchNewAlbums, fetchSongs} from './api/api'
 import { useEffect, useState } from 'react';
 import styles from "./App.module.css"
-
+import Search from "./component/Search/Search";
 function App() {
 
   const[topAlbumSongs,setTopAlbumSongs]=useState([]);
@@ -98,6 +98,9 @@ const generateNewSongs=(index)=>{
   return (
     <div className="App">
       <Navbar />
+      <div className={styles.mobileSearch}>
+        <Search />
+        </div>
       <Hero />
       <div className={styles.sectionWrapper}>
       <Section type='album' title='Top Albums' data={topAlbumSongs}/>

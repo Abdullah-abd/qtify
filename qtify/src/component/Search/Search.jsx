@@ -25,7 +25,7 @@ const Search = () => {
     navigate(`/album/${value.slug}`);
   };
   return (
-    <div style={{ position: "relative" }}>
+    <div className={styles.mobileSearch}style={{ position: "relative" }}>
       <form
         className={styles.wrapper}
         onSubmit={(e) => {

@@ -22,3 +22,28 @@
     cursor: pointer;
   }
   
+  @media screen and (max-width: 576px) {
+    .mobileSearch {
+      width: 100vw;
+      /* padding: 10px; Add padding to prevent touching screen edges */
+    }
+    .search {
+      width: 85vw;
+    }
+    .searchButton{
+      width: 15vw;
+    }
+  }
+
+  @media screen and (min-width: 577px) and (max-width: 992px) {
+    .mobileSearch {
+      width: 100vw;
+      /* padding: 10px; Add padding to prevent touching screen edges */
+    }
+    .search {
+      width: 90vw;
+    }
+    .searchButton{
+      width: 10vw;
+    }
+  }

@@ -8,3 +8,9 @@
   gap: 30px;
   color: #FFFFFF;
 }
+
+@media screen and (max-width: 576px){
+  h1{
+    font-weight: 100;
+  }
+}

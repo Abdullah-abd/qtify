@@ -34,3 +34,16 @@
        text-overflow: ellipsis;
    }
    
+   @media screen and (max-width: 576px) {
+    .wrapper{
+        width: 130px;
+    }
+
+    .card{
+        position: relative;
+        height: 205px;
+        width: 140px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+   }
