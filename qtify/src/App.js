@@ -6,6 +6,7 @@ import {fetchTopAlbums, fetchNewAlbums, fetchSongs} from './api/api'
 import { useEffect, useState } from 'react';
 import styles from "./App.module.css"
 import Search from "./component/Search/Search";
+import Faqs from "./component/Faqs/Faqs";
 function App() {
 
   const[topAlbumSongs,setTopAlbumSongs]=useState([]);
@@ -107,6 +108,7 @@ const generateNewSongs=(index)=>{
       <Section type='album' title='New Albums' data={newAlbumSongs}/>
       <FilterSection  type='song' title='Songs' value={value} filteredData={filteredData} handleChangeIndex={handleChangeIndex}/>
       </div>
+      <Faqs/>
     </div>
   );
 }
