@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import styles from "./App.module.css"
 import Search from "./component/Search/Search";
 import Faqs from "./component/Faqs/Faqs";
+import Footer from "./component/Footer/Footer";
 function App() {
 
   const[topAlbumSongs,setTopAlbumSongs]=useState([]);
@@ -105,10 +106,15 @@ const generateNewSongs=(index)=>{
       <Hero />
       <div className={styles.sectionWrapper}>
       <Section type='album' title='Top Albums' data={topAlbumSongs}/>
+      <hr/>
       <Section type='album' title='New Albums' data={newAlbumSongs}/>
+      <hr/>
       <FilterSection  type='song' title='Songs' value={value} filteredData={filteredData} handleChangeIndex={handleChangeIndex}/>
       </div>
+      <hr/>
       <Faqs/>
+      <hr/>
+      <Footer/>
     </div>
   );
 }

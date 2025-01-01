@@ -12,7 +12,8 @@ export default function AccordionExpandIcon({heading,details}) {
           backgroundColor: "#121212",
           color: "white",
           border: "1px solid #ffffff",
-          margin:"10px"
+          margin:"10px",
+          width:"70vw"
         }}
       >
         <AccordionSummary
