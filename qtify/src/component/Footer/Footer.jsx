@@ -48,7 +48,7 @@ export default function Footer() {
             )}
           </Button>
         </div>
-        <MusicPlayTracker/>
+        <MusicPlayTracker pause={isPlaying?true:false}/>
       </div>
     </div>
   );

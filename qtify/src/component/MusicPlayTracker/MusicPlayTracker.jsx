@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-const MusicPlayTracker = () => {
+
+const MusicPlayTracker = ({ pause = false }) => {
   const [progress, setProgress] = useState(0); // Progress in percentage
   const [currentTime, setCurrentTime] = useState(0); // Time in seconds
-  const duration = 150; // Total duration in seconds (e.g., 3 minutes)
+  const duration = 150; // Total duration in seconds (e.g., 2.5 minutes)
   const theme = useTheme();
-  // Simulate progress
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime((prev) => {
-        const nextTime = prev + 1;
-        if (nextTime >= duration) {
-          clearInterval(timer);
-          return duration;
-        }
-        return nextTime;
-      });
-    }, 1000);
+    let timer;
+
+    if (!pause) {
+      timer = setInterval(() => {
+        setCurrentTime((prev) => {
+          const nextTime = prev + 1;
+          if (nextTime >= duration) {
+            clearInterval(timer);
+            return duration;
+          }
+          return nextTime;
+        });
+      }, 1000);
+    }
 
     return () => clearInterval(timer);
-  }, []);
+  }, [pause]); // Re-run effect whenever `pause` changes
 
-  // Update progress bar
   useEffect(() => {
     setProgress((currentTime / duration) * 100);
   }, [currentTime]);
 
-  // Format time as mm:ss
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -43,23 +46,23 @@ const MusicPlayTracker = () => {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
         textAlign: "center",
         [theme.breakpoints.down("sm")]: {
-            width: "40vw", // Set to 40vw for screens smaller than 576px
-          },
+          width: "40vw", // Set to 40vw for screens smaller than 576px
+        },
       }}
     >
-      {/* <Typography variant="h6" gutterBottom>
-        Music Progress
-      </Typography> */}
       <Typography variant="subtitle2" sx={{ marginBottom: "8px" }}>
         {formatTime(currentTime)} / {formatTime(duration)}
       </Typography>
       <LinearProgress
         variant="determinate"
         value={progress}
-        sx={{ height: "8px", borderRadius: "4px", "& .MuiLinearProgress-bar": {
+        sx={{
+          height: "8px",
+          borderRadius: "4px",
+          "& .MuiLinearProgress-bar": {
             backgroundColor: "#34C94B",
           },
-          backgroundColor:"#ffffff"
+          backgroundColor: "#ffffff",
         }}
       />
     </Box>
