@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 const MusicPlayTracker = () => {
   const [progress, setProgress] = useState(0); // Progress in percentage
   const [currentTime, setCurrentTime] = useState(0); // Time in seconds
-  const duration = 180; // Total duration in seconds (e.g., 3 minutes)
+  const duration = 150; // Total duration in seconds (e.g., 3 minutes)
   const theme = useTheme();
   // Simulate progress
   useEffect(() => {
@@ -40,7 +40,7 @@ const MusicPlayTracker = () => {
         width: "60vw",
         padding: "16px",
         borderRadius: "8px",
-        // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
         textAlign: "center",
         [theme.breakpoints.down("sm")]: {
             width: "40vw", // Set to 40vw for screens smaller than 576px
